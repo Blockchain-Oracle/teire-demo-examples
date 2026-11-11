@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://teire.84.46.247.92.sslip.io/schema.json
+# Teire on Otari demo repository: more PRs open at once, and one extra changelog for zod.
+pullRequests:
+  limit: 12
+  perHour: 6
+sources:
+  # A changelog this repository names for zod. It carries a planted prompt injection (see the
+  # file), which Otari's prompt-injection guardrail refuses; Teire reads zod's own notes without it.
+  - package: zod
+    changelogUrl: https://raw.githubusercontent.com/Blockchain-Oracle/teire-demo-examples/main/npm-zod/VENDOR-NOTES.md
