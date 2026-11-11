@@ -5,13 +5,12 @@ import httpx
 
 def make_client(proxy_url: str | None = None, timeout: float = 5.0) -> httpx.Client:
     """A client for health checks; corporate networks route it through `proxy_url`."""
-    proxies = {"all://": proxy_url} if proxy_url else None
-    return httpx.Client(proxies=proxies, timeout=timeout)
+    return httpx.Client(proxy=proxy_url, timeout=timeout)
 
 
 def local_client(app) -> httpx.Client:
     """A client that calls a WSGI app in-process, for previews and tests."""
-    return httpx.Client(app=app, base_url="http://status.local")
+    return httpx.Client(transport=httpx.WSGITransport(app=app), base_url="http://status.local")
 
 
 def check(client: httpx.Client, url: str) -> dict:
