@@ -24,3 +24,11 @@ kotlin {
 tasks.test {
     useJUnitPlatform()
 }
+
+dependencies {
+    constraints {
+        implementation("com.squareup.okio:okio:1.17.6") {
+            because("Teire: fixes GHSA-w33c-445m-f8w7")
+        }
+    }
+}
